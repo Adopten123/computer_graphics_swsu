@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/imgconv.dir/link.d CMakeFiles/imgconv.dir/main.cpp.o -o imgconv   -L/usr/lib/Release  -Wl,-rpath,/usr/lib/Release ImgLibBuildDir/libImgLib.a -ljpeg

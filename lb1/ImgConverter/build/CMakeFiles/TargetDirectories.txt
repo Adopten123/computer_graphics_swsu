@@ -1,0 +1,6 @@
+/home/adopten/programming/cpp/computer_graphics_swsu/lb1/ImgConverter/build/CMakeFiles/imgconv.dir
+/home/adopten/programming/cpp/computer_graphics_swsu/lb1/ImgConverter/build/CMakeFiles/edit_cache.dir
+/home/adopten/programming/cpp/computer_graphics_swsu/lb1/ImgConverter/build/CMakeFiles/rebuild_cache.dir
+/home/adopten/programming/cpp/computer_graphics_swsu/lb1/ImgConverter/build/ImgLibBuildDir/CMakeFiles/ImgLib.dir
+/home/adopten/programming/cpp/computer_graphics_swsu/lb1/ImgConverter/build/ImgLibBuildDir/CMakeFiles/edit_cache.dir
+/home/adopten/programming/cpp/computer_graphics_swsu/lb1/ImgConverter/build/ImgLibBuildDir/CMakeFiles/rebuild_cache.dir
