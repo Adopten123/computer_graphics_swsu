@@ -16,7 +16,11 @@ class ImageFormatInterface {
 public:
     virtual ~ImageFormatInterface() = default;
     virtual bool SaveImage(const img_lib::Path& file, const img_lib::Image& image) const = 0;
-    virtual img_lib::Image LoadImage(const img_lib::Path& file) const = 0;
+	virtual img_lib::Image LoadImage(const img_lib::Path& file) const = 0;
+
+	virtual bool ProcessImage(const img_lib::Path& file, const img_lib::Image& image) const {
+		return true;
+	}
 };
 
 class PPMFormat : public ImageFormatInterface {
@@ -45,6 +49,10 @@ class BMPFormat : public ImageFormatInterface {
 public:
     bool SaveImage(const img_lib::Path& file, const img_lib::Image& image) const override {
         return img_lib::SaveBMP(file, image);
+    }
+
+	bool ProcessImage(const img_lib::Path& file, const img_lib::Image& image) const override {
+   		return img_lib::ProcessBMP(file, image);
     }
 
     img_lib::Image LoadImage(const img_lib::Path& file) const override {
@@ -124,10 +132,8 @@ int main(int argc, const char** argv) {
         return 4;
     }
 
-
-
     // Сохраняем изображение
-    if (!outputFormat->SaveImage(out_path, image)) {
+    if (!outputFormat->ProcessImage(out_path, image)) {
         cerr << "Saving failed"sv << endl;
         return 5;
     }

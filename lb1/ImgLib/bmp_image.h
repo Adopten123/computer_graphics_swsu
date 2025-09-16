@@ -7,6 +7,7 @@ namespace img_lib {
 using Path = std::filesystem::path;
 
 bool SaveBMP(const Path& file, const Image& image);
+bool ProcessBMP(const Path& file, const Image& image);
 Image LoadBMP(const Path& file);
 
 } // namespace img_lib

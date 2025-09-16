@@ -48,7 +48,42 @@ namespace img_lib {
     }
     PACKED_STRUCT_END
 
-    bool SaveBMP(const Path& file, const Image& image) {
+	bool SaveBMP(const Path& file, const Image& image) {
+        BitmapFileHeader file_header(image.GetWidth(), image.GetHeight());
+        BitmapInfoHeader info_header(image.GetWidth(), image.GetHeight());
+
+        // Добавляет размер заголовков к размеру изображения
+        file_header.bfSize += sizeof(BitmapFileHeader) + sizeof(BitmapInfoHeader);
+
+        ofstream out(file, ios::binary);
+        if (!out) {
+            return false;
+        }
+
+        // Записывает заголовки
+        out.write(reinterpret_cast<const char*>(&file_header), sizeof(file_header));
+        out.write(reinterpret_cast<const char*>(&info_header), sizeof(info_header));
+
+        const int stride = GetBMPStride(image.GetWidth());
+        vector<char> buff(stride, 0);
+
+        // Записывает данные изображения "строка за строкой", снизу вверх
+        for (int y = image.GetHeight() - 1; y >= 0; --y) {
+            const Color* line = image.GetLine(y);
+
+            for (int x = 0; x < image.GetWidth(); ++x) {
+                buff[x * 3 + 0] = static_cast<char>(line[x].b); // B
+                buff[x * 3 + 1] = static_cast<char>(line[x].g); // G
+                buff[x * 3 + 2] = static_cast<char>(line[x].r); // R
+            }
+
+            out.write(buff.data(), stride);
+        }
+
+        return out.good();
+    }
+
+    bool ProcessBMP(const Path& file, const Image& image) {
         BitmapFileHeader file_header(image.GetWidth(), image.GetHeight());
         BitmapInfoHeader info_header(image.GetWidth(), image.GetHeight());
 
