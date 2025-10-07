@@ -30,9 +30,15 @@ namespace simple_algorithm {
             int j2 = static_cast<int>(gamma - dj);
 
             if (j1 >= 0 && j1 < image_param_2)
-                image.draw_point(i, j1, color);
+				if (is_x_axis)
+                	image.draw_point(i, j1, color);
+				else
+					image.draw_point(j1, i, color);
             if (j2 >= 0 && j2 < image_param_2)
-                image.draw_point(i, j2, color);
+                if (is_x_axis)
+                	image.draw_point(i, j2, color);
+				else
+					image.draw_point(j2, i, color);
         }
     }
 

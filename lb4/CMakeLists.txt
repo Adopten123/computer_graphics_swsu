@@ -11,6 +11,8 @@ add_library(circle_painter STATIC
         svgprocessor_utils.cpp
         bresenham_algorithm.h
         bresenham_algorithm.cpp
+        cimg_algorithm.h
+        cimg_algorithm.cpp
         equation_algorithm.h
         equation_algorithm.cpp
         param_equation_algorithm.h
