@@ -19,6 +19,8 @@ struct CircleParams {
     int a, b, radius;
 };
 
+std::vector<std::vector<double>> compute_coords(int width, int height);
+
 template<typename DrawCircleFunc>
 void draw_pentagon_with_circles(cimg_library::CImg<unsigned char>& image,
                                double center_x, double center_y,

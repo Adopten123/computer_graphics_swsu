@@ -23,12 +23,7 @@ const char* NAMES[4] = {
 
 void test_circle_algorithms(int width, int height, int radius){
     CImg<unsigned char> test_image(width, height, IMAGE_TYPE, COLOR_CHANNELS_COUNT, WHITE);
-    double centers[4][2] = {
-        {width * 0.25, height * 0.25},
-        {width * 0.75, height * 0.25},
-        {width * 0.25, height * 0.75},
-        {width * 0.75, height * 0.75}
-    };
+    std::vector<std::vector<double>> centers = compute_coords(width, height);
 
     for(int i = 0; i < 4; i++){
         CircleParams circle_param = CircleParams{
@@ -47,12 +42,7 @@ void test_circle_algorithms(int width, int height, int radius){
 void test_pentagon_algorithms(double side_length, int width, int height) {
     CImg<unsigned char> test_image(width, height, IMAGE_TYPE, COLOR_CHANNELS_COUNT, WHITE);
 
-    double centers[4][2] = {
-        {width * 0.25, height * 0.25},
-        {width * 0.75, height * 0.25},
-        {width * 0.25, height * 0.75},
-        {width * 0.75, height * 0.75}
-    };
+    std::vector<std::vector<double>> centers = compute_coords(width, height);
     for (int i = 0; i < 4; i++) {
         draw_pentagon_with_circles(test_image, centers[i][0], centers[i][1],
                               side_length, FUNCTIONS[i], NAMES[i]);
