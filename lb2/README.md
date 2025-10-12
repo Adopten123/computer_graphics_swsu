@@ -73,7 +73,7 @@ cmake --build .
 
 ### Пример использования
 ```bash
-./imgprocessor inputed_image.jpg output.pbm 400 400
+./imgprocessor inputed_image.jpg output.pnm 400 400
 ```
 
 

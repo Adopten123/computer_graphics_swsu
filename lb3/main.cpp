@@ -23,7 +23,7 @@ void test_algorithms(double radius, double angle, int width, int height) {
     draw_pentagram(test_image, centers[2][0], centers[2][1], radius, angle, bresenham::draw_line_int);
     draw_pentagram(test_image, centers[3][0], centers[3][1], radius, angle, algorithm::draw_line);
 
-    test_image.save_pnm("test.pbm");
+    test_image.save_pnm("test.pnm", 3);
     test_image.display();
 }
 

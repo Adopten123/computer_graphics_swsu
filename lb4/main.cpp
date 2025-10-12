@@ -35,7 +35,7 @@ void test_circle_algorithms(int width, int height, int radius){
                    NAMES[i], BLACK, 0, 1, 13);
     }
 
-    test_image.save_pnm("circle_comparison.pnm");
+    test_image.save_pnm("circle_comparison.pnm", 1);
     test_image.display();
 }
 
@@ -48,7 +48,7 @@ void test_pentagon_algorithms(double side_length, int width, int height) {
                               side_length, FUNCTIONS[i], NAMES[i]);
     }
 
-    test_image.save_pnm("pentagon_comparison.pnm");
+    test_image.save_pnm("pentagon_comparison.pnm", 3);
     test_image.display();
 }
 
