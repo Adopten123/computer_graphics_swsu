@@ -18,7 +18,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6b29843-63eb-463e-bed3-dbed2f3d435c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lb4/bresenham_algorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lb4/bresenham_algorithm.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lb4/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
