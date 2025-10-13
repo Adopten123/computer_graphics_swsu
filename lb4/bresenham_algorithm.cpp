@@ -7,7 +7,7 @@ namespace bresenham {
     void draw_circle(CImg<unsigned char>& image, CircleParams params, Color color) {
         int x = 0;
         int y = params.radius;
-        int d = 3 - 2 * params.radius;
+        int delta = 2 - 2 * params.radius;
 
         while (x <= y) {
             image.draw_point(params.a + x, params.b + y, color);
@@ -19,11 +19,15 @@ namespace bresenham {
             image.draw_point(params.a + y, params.b - x, color);
             image.draw_point(params.a - y, params.b - x, color);
 
-            if (d < 0)
-                d += 4 * x + 6;
+            int d1 = 2 * (delta + y) - 1;
+            int d2 = 2 * (delta - x) - 1;
+
+            if (delta < 0 && d1 <= 0)
+                delta += 2 * ++x + 1;
+            else if (delta > 0 && d2 > 0)
+                delta -= 2 * --y - 1;
             else
-                d += 4 * (x - y--) + 10;
-            x++;
+                delta += 2 * (++x - --y);
         }
     }
 }

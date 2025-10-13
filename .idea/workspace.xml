@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="BackendCodeEditorMiscSettings">
-    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
-    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/RiderDebugger/RiderRestoreDecompile/RestoreDecompileSetting/@EntryValue" value="false" type="bool" />
+    <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
   </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
@@ -18,14 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f6b29843-63eb-463e-bed3-dbed2f3d435c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lb1/ImgConverter/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lb1/ImgConverter/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lb1/ImgLib/bmp_image.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lb1/ImgLib/bmp_image.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lb1/ImgLib/bmp_image.h" beforeDir="false" afterPath="$PROJECT_DIR$/lb1/ImgLib/bmp_image.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lb2/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lb2/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lb3/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lb3/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lb4/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lb4/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lb4/bresenham_algorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/lb4/bresenham_algorithm.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
