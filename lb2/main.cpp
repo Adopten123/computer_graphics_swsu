@@ -95,7 +95,7 @@ int main(int argc, const char** argv) {
 	InsertAxes(tmp_image, graph_x, graph_y);
 	InsertCosGraph(tmp_image, graph_x, graph_y);
 
-	tmp_image.save_pnm(argv[2], 3);
+	tmp_image.save_pnm_p3(argv[2]);
 	tmp_image.display();
 
 	return 0;

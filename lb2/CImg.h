@@ -2525,9 +2525,6 @@ namespace cimg_library {
     inline double eval(const char *const expression,
                        const double x=0, const double y=0, const double z=0, const double c=0);
 
-    // Create a directory.
-    inline void create_directory(const char *const dirname, const bool force_overwrite=true);
-
   } // namespace cimg { ...
 
   /*---------------------------------------
@@ -6533,8 +6530,7 @@ namespace cimg_library {
 
     template<typename t>
     inline t minabs(const t& a, const t& b, const t& abs_b) {
-      typedef typename cimg::superset<t,int>::type tint;
-      return (tint)abs_b<(tint)cimg::abs(a)?b:a;
+      return abs_b<cimg::abs(a)?b:a;
     }
 
     //! Return the maximum between three values.
@@ -6557,8 +6553,7 @@ namespace cimg_library {
 
     template<typename t>
     inline t maxabs(const t& a, const t& b, const t& abs_b) {
-      typedef typename cimg::superset<t,int>::type tint;
-      return (tint)abs_b>(tint)cimg::abs(a)?b:a;
+      return abs_b>cimg::abs(a)?b:a;
     }
 
     //! Return the sign of a value.
@@ -7813,21 +7808,21 @@ namespace cimg_library {
       return date(&out,1);
     }
 
-    //! Convert date to epoch (UTC time).
+    //! Convert date to epoch (local time).
     // 'year' must be >=1900, 'month' in [ 1,12 ], 'day' in [ 1,31 ], 'hour' in [ 0,23 ],
     // 'minute' in [ 0,59 ] and 'second' in [ 0,60 ].
     inline cimg_int64 epoch(const int year, const int month=1,
                             const int day=1, const int hour=0,
                             const int minute=0, const int second=0) {
-      static const int tab_days[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
-#define cimg_is_leap(y) ((!((y)%4) && ((y)%100)) || !((y)%400))
-#define cimg_days_in_month(y,m) ((m)==2 && cimg_is_leap(y)?29:tab_days[cimg::cut(m,1,12) - 1])
-      cimg_int64 days = 0;
-      if (year>=1970) for (int y = 1970; y<year; ++y) days+=cimg_is_leap(y)?366:365;
-      else for (int y = year; y<1970; ++y) days-=cimg_is_leap(y)?366:365;
-      for (int m = 1; m<month; ++m) days+=cimg_days_in_month(year,m);
-      days+=day - 1;
-      return days*86400 + hour*3600 + minute*60 + second;
+      struct tm date;
+      std::memset(&date,0,sizeof(struct tm));
+      date.tm_year = std::max(year,1900) - 1900;
+      date.tm_mon = cimg::cut(month,1,12) - 1;
+      date.tm_mday = cimg::cut(day,1,31);
+      date.tm_hour = std::min(hour,23);
+      date.tm_min = std::min(minute,59);
+      date.tm_sec = std::min(second,60);
+      return (cimg_int64)std::mktime(&date);
     }
 
     // Get/set path to the \c curl binary.
@@ -54466,18 +54461,16 @@ namespace cimg_library {
             nbs1 = bs0 + fact1*(bs2 - bs0),
             nz0 = zc, nz1 = zc;
           const int
-            nx0 = cimg::uiround(X + focale*nfx0/nz0), ny0 = cimg::uiround(Y + focale*nfy0/nz0),
-            nx1 = cimg::uiround(X + focale*nfx1/nz1), ny1 = cimg::uiround(Y + focale*nfy1/nz1),
+            nx0 = cimg::uiround(X + focale*nfx0/z0), ny0 = cimg::uiround(Y + focale*nfy0/z0),
+            nx1 = cimg::uiround(X + focale*nfx1/z1), ny1 = cimg::uiround(Y + focale*nfy1/z1),
             ntx0 = cimg::uiround(tx0 + fact0*(tx1 - tx0)), nty0 = cimg::uiround(ty0 + fact0*(ty1 - ty0)),
             ntx1 = cimg::uiround(tx0 + fact1*(tx2 - tx0)), nty1 = cimg::uiround(ty0 + fact1*(ty2 - ty0));
-          if (zbuffer) draw_triangle(zbuffer,nx0,ny0,nz0,x1,y1,z1,x2,y2,z2,
-                                     texture,ntx0,nty0,tx1,ty1,tx2,ty2,nbs0,bs1,bs2,opacity).
-                         draw_triangle(zbuffer,nx0,ny0,nz0,nx1,ny1,nz1,x2,y2,z2,
-                                       texture,ntx0,nty0,ntx1,nty1,tx2,ty2,nbs0,nbs1,bs2,opacity);
-          else draw_triangle(nx0,ny0,nz0,x1,y1,z1,x2,y2,z2,
-                             texture,ntx0,nty0,tx1,ty1,tx2,ty2,nbs0,bs1,bs2,opacity).
-                 draw_triangle(nx0,ny0,nz0,nx1,ny1,nz1,x2,y2,z2,
-                               texture,ntx0,nty0,ntx1,nty1,tx2,ty2,nbs0,nbs1,bs2,opacity);
+          if (zbuffer) draw_triangle(zbuffer,nx0,ny0,nz0,x1,y1,z1,x2,y2,z2,texture,ntx0,nty0,tx1,ty1,tx2,ty2,
+                                     nbs0,bs1,bs2,opacity).
+                         draw_triangle(zbuffer,nx0,ny0,nz0,nx1,ny1,nz1,x2,y2,z2,texture,ntx0,nty0,ntx1,nty1,tx2,ty2,
+                                       nbs0,nbs1,bs2,opacity);
+          else draw_triangle(nx0,ny0,x1,y1,x2,y2,texture,ntx0,nty0,tx1,ty1,tx2,ty2,nbs0,bs1,bs2,opacity).
+                 draw_triangle(nx0,ny0,nx1,ny1,x2,y2,texture,ntx0,nty0,ntx1,nty1,tx2,ty2,nbs0,nbs1,bs2,opacity);
           return *this;
         }
       }
@@ -62302,6 +62295,10 @@ namespace cimg_library {
       return _save_pnm(0,filename,bytes_per_pixel);
     }
 
+    const CImg<T>& save_pnm_p3(const char *const filename, const unsigned int bytes_per_pixel=1) const {
+      return _save_pnm_p3(0,filename,bytes_per_pixel);
+    }
+
     //! Save image as a PNM file \overloading.
     const CImg<T>& save_pnm(std::FILE *const file, const unsigned int bytes_per_pixel=0) const {
       return _save_pnm(file,0,bytes_per_pixel);
@@ -62422,6 +62419,48 @@ namespace cimg_library {
             if (!cimg::endianness()) cimg::invert_endianness(buf._data,buf_size);
             cimg::fwrite(buf._data,3*N,nfile);
             to_write-=N;
+          }
+        }
+      }
+      }
+      if (!file) cimg::fclose(nfile);
+      return *this;
+    }
+
+    const CImg<T>& _save_pnm_p3(std::FILE *const file, const char *const filename,
+                             const unsigned int bytes_per_pixel) const {
+      if (!file && !filename)
+        throw CImgArgumentException(_cimg_instance
+                                    "save_pnm_p3(): Specified filename is (null).",
+                                    cimg_instance);
+      if (is_empty()) { cimg::fempty(file,filename); return *this; }
+
+      if (_spectrum != 3 || bytes_per_pixel != 1)
+        cimg::warn(_cimg_instance
+                   "save_pnm_p3(): Can save only in p3.",
+                   cimg_instance,
+                   filename?filename:"(FILE*)");
+
+      std::FILE *const nfile = file?file:cimg::fopen(filename,"wb");
+      const T
+        *ptr_r = data(0,0,0,0),
+        *ptr_g = data(0,0,0,1),
+        *ptr_b = data(0,0,0,2);
+      //const ulongT buf_size = std::min((ulongT)(1024*1024),(ulongT)(_width*_height*3UL)));
+
+      std::fprintf(nfile,"P3\n%u %u\n%u\n", _width,_height,255);
+
+      switch (_spectrum) {
+      default : { // RGB image
+        if (bytes_per_pixel==1) { // Binary PPM 8 bits
+          for (longT to_write = (longT)width()*height(); to_write>0; to_write--) {
+            int n;
+            if(to_write == 1)
+              n = std::fprintf(nfile, "%u %u %u", (unsigned int)(unsigned char)*(ptr_r++), (unsigned int)(unsigned char)*(ptr_g++), (unsigned int)(unsigned char)*(ptr_b++));
+            else
+              n = std::fprintf(nfile, "%u %u %u ", (unsigned int)(unsigned char)*(ptr_r++), (unsigned int)(unsigned char)*(ptr_g++), (unsigned int)(unsigned char)*(ptr_b++));
+
+            //cimg::fwrite((T*)buf, n, nfile);
           }
         }
       }
@@ -70012,74 +70051,8 @@ namespace cimg_library {
 
       // Sort resulting list by lexicographic order.
       if (res._width>=2) std::qsort(res._data,res._width,sizeof(CImg<char>),_sort_files);
+
       return res;
-    }
-
-    inline void _create_directory(const char *const dirname, const bool force_overwrite) {
-      bool is_error = false;
-      if (cimg::is_directory(dirname)) return;
-      if (cimg::is_file(dirname)) { // In case 'dirname' is already an existing filename
-        if (!force_overwrite) is_error = true;
-        else {
-#if cimg_OS==2
-          is_error = !DeleteFileA(dirname);
-#elif cimg_OS==1
-          is_error = (bool)std::remove(dirname);
-#endif
-        }
-      }
-      if (!is_error) {
-#if cimg_OS==2
-        if (!CreateDirectoryA(dirname,0)) {
-          // The path may be UTF-8, convert it to a wide-character string and try again.
-          const int wideLength = MultiByteToWideChar(CP_UTF8,0,dirname,-1,0,0);
-          if (!wideLength) is_error = true;
-          else {
-            CImg<wchar_t> wpath(wideLength);
-            if (!MultiByteToWideChar(CP_UTF8,0,dirname,-1,wpath,wideLength)) is_error = true;
-            else {
-              DeleteFileW(wpath);
-              is_error = !CreateDirectoryW(wpath,0);
-            }
-          }
-        }
-#elif cimg_OS==1
-        is_error = (bool)mkdir(dirname,0777);
-#endif
-      }
-      if (is_error)
-        throw CImgIOException("cimg::create_dir(): Failed to create directory '%s'.",dirname);
-    }
-
-    //! Create a directory.
-    /**
-       \param dirname The path of the directory to create.
-       \param force_overwrite Force overwrite of the directory when necessary.
-    **/
-    inline void create_directory(const char *const dirname, const bool force_overwrite) {
-#if cimg_OS==2
-      const char *const cs = "/\\";
-#else
-      const char *const cs = "/";
-#endif
-      const char *ptr0 = dirname, *ptr1 = std::strpbrk(ptr0,cs);
-      if (ptr1) {
-        while (ptr1) { // Manage case where 'dirname' is a path with separators (multiple directories)
-          if (ptr1!=ptr0) {
-            CImg<char> subdir(dirname,ptr1 - dirname + 1);
-            subdir.back() = 0;
-            _create_directory(subdir,force_overwrite);
-          }
-          ptr0 = ++ptr1;
-          ptr1 = std::strpbrk(ptr0,cs);
-        }
-#if cimg_OS==2
-        const bool cond = *ptr0!='/' && *ptr0!='\\';
-#else
-        const bool cond = *ptr0!='/';
-#endif
-        if (*ptr0 && cond) _create_directory(dirname,force_overwrite);
-      } else _create_directory(dirname,force_overwrite);
     }
 
     //! Try to guess format from an image file.
