@@ -74,7 +74,7 @@ void ProcessImage(const Image& img1, const Image& img2) {
             }
         }
 
-        result.normalize(0, 255).save("output.bmp");
+        result.normalize(0, 255).save_pnm_p3("output.bmp");
         std::cout << "Result saved as output.bmp" << std::endl;
         std::cout << "Processing completed successfully!" << std::endl;
 
