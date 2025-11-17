@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/processor.dir/main.cpp.o -o processor  -lX11 -ljpeg -lpng -lz -lm 
