@@ -1,3 +1,3 @@
-./processor central both 500
+./processor ortho cube
 
 ./processor central dodeca 400

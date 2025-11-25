@@ -3,6 +3,13 @@
 
 CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/main.cpp \
   /home/adopten/computer_graphics_swsu/lb9/CImg.h \
+  /usr/include/X11/X.h \
+  /usr/include/X11/Xfuncproto.h \
+  /usr/include/X11/Xlib.h \
+  /usr/include/X11/Xosdefs.h \
+  /usr/include/X11/Xutil.h \
+  /usr/include/X11/keysym.h \
+  /usr/include/X11/keysymdef.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/bitsperlong.h \
   /usr/include/asm-generic/errno-base.h \
@@ -64,6 +71,7 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/stl_algo.h \
   /usr/include/c++/13/bits/stl_algobase.h \
+  /usr/include/c++/13/bits/stl_bvector.h \
   /usr/include/c++/13/bits/stl_construct.h \
   /usr/include/c++/13/bits/stl_function.h \
   /usr/include/c++/13/bits/stl_heap.h \
@@ -73,6 +81,8 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
   /usr/include/c++/13/bits/stl_pair.h \
   /usr/include/c++/13/bits/stl_relops.h \
   /usr/include/c++/13/bits/stl_tempbuf.h \
+  /usr/include/c++/13/bits/stl_uninitialized.h \
+  /usr/include/c++/13/bits/stl_vector.h \
   /usr/include/c++/13/bits/streambuf.tcc \
   /usr/include/c++/13/bits/streambuf_iterator.h \
   /usr/include/c++/13/bits/string_view.tcc \
@@ -81,6 +91,7 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
   /usr/include/c++/13/bits/uses_allocator.h \
   /usr/include/c++/13/bits/uses_allocator_args.h \
   /usr/include/c++/13/bits/utility.h \
+  /usr/include/c++/13/bits/vector.tcc \
   /usr/include/c++/13/cctype \
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/cfloat \
@@ -138,6 +149,7 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
   /usr/include/c++/13/type_traits \
   /usr/include/c++/13/typeinfo \
   /usr/include/c++/13/utility \
+  /usr/include/c++/13/vector \
   /usr/include/ctype.h \
   /usr/include/dirent.h \
   /usr/include/endian.h \
@@ -146,8 +158,6 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
   /usr/include/features-time64.h \
   /usr/include/features.h \
   /usr/include/fnmatch.h \
-  /usr/include/jmorecfg.h \
-  /usr/include/jpeglib.h \
   /usr/include/limits.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
@@ -159,12 +169,8 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
   /usr/include/linux/types.h \
   /usr/include/locale.h \
   /usr/include/math.h \
-  /usr/include/png.h \
-  /usr/include/pngconf.h \
-  /usr/include/pnglibconf.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
-  /usr/include/setjmp.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
@@ -282,7 +288,6 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
-  /usr/include/x86_64-linux-gnu/jconfig.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
   /usr/include/x86_64-linux-gnu/sys/select.h \
   /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
@@ -307,8 +312,6 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 /usr/include/x86_64-linux-gnu/sys/single_threaded.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
-
-/usr/include/x86_64-linux-gnu/jconfig.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
 
@@ -344,19 +347,17 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/x86_64-linux-gnu/bits/uio_lim.h:
 
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
-
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
-/usr/include/c++/13/tr1/gamma.tcc:
+/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
-/usr/include/c++/13/cctype:
+/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
-/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+/usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
 
-/usr/include/c++/13/tr1/ell_integral.tcc:
+/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
 
-/usr/include/c++/13/tr1/exp_integral.tcc:
+/usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h:
 
 /usr/include/c++/13/pstl/pstl_config.h:
 
@@ -372,29 +373,27 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/c++/13/limits:
 
-/usr/include/limits.h:
-
-/usr/include/c++/13/tr1/bessel_function.tcc:
-
-/usr/include/c++/13/initializer_list:
-
 /usr/include/c++/13/iostream:
 
 /usr/include/c++/13/ext/type_traits.h:
 
-/usr/include/c++/13/ext/string_conversions.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/13/ext/atomicity.h:
+
+/usr/include/c++/13/cctype:
+
+/usr/include/c++/13/tr1/gamma.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
 
 /usr/include/c++/13/debug/assertions.h:
 
 /usr/include/c++/13/ctime:
 
-/usr/include/c++/13/tr1/beta_function.tcc:
-
-/usr/include/c++/13/bits/stl_function.h:
-
-/usr/include/x86_64-linux-gnu/bits/fcntl.h:
-
 /usr/include/c++/13/cstring:
+
+/usr/include/X11/X.h:
 
 /usr/include/c++/13/cstdlib:
 
@@ -418,9 +417,9 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/c++/13/clocale:
 
-/usr/include/c++/13/bits/uses_allocator_args.h:
+/usr/include/c++/13/bits/vector.tcc:
 
-/usr/include/c++/13/bits/new_allocator.h:
+/usr/include/c++/13/bits/uses_allocator_args.h:
 
 /usr/include/c++/13/exception:
 
@@ -442,15 +441,17 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/endian.h:
 
+/usr/include/c++/13/bits/new_allocator.h:
+
+/usr/include/c++/13/bits/stl_uninitialized.h:
+
+/home/adopten/computer_graphics_swsu/lb9/main.cpp:
+
 /usr/include/c++/13/bits/stl_tempbuf.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h:
-
-/usr/include/c++/13/system_error:
-
-/usr/include/c++/13/compare:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h:
 
@@ -460,6 +461,12 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/c++/13/bits/ostream.tcc:
 
+/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
+
+/usr/include/c++/13/ext/numeric_traits.h:
+
+/usr/include/c++/13/bits/stl_iterator.h:
+
 /usr/include/c++/13/bits/functexcept.h:
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
@@ -468,123 +475,21 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/c++/13/ext/alloc_traits.h:
 
-/usr/include/c++/13/bits/stl_algobase.h:
+/usr/include/c++/13/bits/stl_bvector.h:
+
+/usr/include/c++/13/bits/allocator.h:
 
 /usr/include/c++/13/bits/stl_algo.h:
 
 /usr/include/c++/13/cstddef:
 
-/usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h:
+/usr/include/c++/13/bits/refwrap.h:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h:
+/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
-/usr/include/c++/13/ios:
+/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h:
 
-/usr/include/c++/13/bits/alloc_traits.h:
-
-/usr/include/c++/13/bits/concept_check.h:
-
-/usr/include/x86_64-linux-gnu/bits/long-double.h:
-
-/usr/include/c++/13/bits/algorithmfwd.h:
-
-/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
-
-/usr/include/c++/13/bits/locale_facets.h:
-
-/usr/include/c++/13/cerrno:
-
-/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
-
-/usr/include/c++/13/bits/cxxabi_init_exception.h:
-
-/usr/include/c++/13/typeinfo:
-
-/usr/include/c++/13/bits/exception.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/home/adopten/computer_graphics_swsu/lb9/main.cpp:
-
-/usr/include/c++/13/bits/cxxabi_forced.h:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
-/usr/include/c++/13/bits/exception_defines.h:
-
-/usr/include/c++/13/bits/localefwd.h:
-
-/usr/include/c++/13/bits/streambuf_iterator.h:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h:
-
-/usr/include/c++/13/bits/streambuf.tcc:
-
-/usr/include/c++/13/bits/specfun.h:
-
-/usr/include/c++/13/bits/basic_string.h:
-
-/usr/include/c++/13/tr1/poly_laguerre.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
-
-/usr/include/c++/13/istream:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
-
-/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
-
-/usr/include/c++/13/backward/binders.h:
-
-/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/include/c++/13/bits/string_view.tcc:
-
-/usr/include/c++/13/bit:
-
-/usr/include/c++/13/bits/basic_string.tcc:
-
-/usr/include/c++/13/bits/cpp_type_traits.h:
-
-/usr/include/c++/13/string:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
-/usr/include/c++/13/bits/move.h:
-
-/usr/include/asm-generic/posix_types.h:
-
-/usr/include/c++/13/tr1/special_function_util.h:
-
-/usr/include/stdc-predef.h:
-
-/usr/include/c++/13/bits/stringfwd.h:
-
-/usr/include/c++/13/bits/iterator_concepts.h:
-
-/usr/include/c++/13/bits/exception_ptr.h:
-
-/usr/include/c++/13/bits/istream.tcc:
-
-/usr/include/c++/13/bits/basic_ios.h:
-
-/usr/include/x86_64-linux-gnu/bits/time64.h:
-
-/usr/include/x86_64-linux-gnu/sys/select.h:
-
-/usr/include/c++/13/cwchar:
-
-/usr/include/c++/13/iosfwd:
-
-/usr/include/c++/13/bits/predefined_ops.h:
-
-/usr/include/c++/13/bits/ranges_cmp.h:
-
-/usr/include/asm-generic/int-ll64.h:
+/usr/include/c++/13/bits/ranges_util.h:
 
 /usr/include/asm-generic/bitsperlong.h:
 
@@ -596,43 +501,123 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/asm-generic/errno-base.h:
 
-/usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h:
+/usr/include/c++/13/iosfwd:
 
-/usr/include/c++/13/bits/ranges_util.h:
+/usr/include/c++/13/bits/predefined_ops.h:
 
-/usr/include/alloca.h:
+/usr/include/c++/13/istream:
 
-/usr/include/linux/posix_types.h:
+/usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
 
-/usr/include/c++/13/bits/ptr_traits.h:
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
+
+/usr/include/c++/13/bits/stl_function.h:
+
+/usr/include/c++/13/tr1/beta_function.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/fcntl.h:
+
+/usr/include/c++/13/bits/ranges_algobase.h:
+
+/usr/include/c++/13/bits/ostream_insert.h:
+
+/usr/include/c++/13/bits/locale_facets.h:
+
+/usr/include/c++/13/bits/streambuf.tcc:
+
+/usr/include/c++/13/bits/specfun.h:
+
+/usr/include/c++/13/bits/basic_string.h:
+
+/usr/include/c++/13/tr1/poly_laguerre.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/c++/13/bits/stl_algobase.h:
+
+/usr/include/c++/13/ext/string_conversions.h:
+
+/usr/include/X11/keysym.h:
+
+/usr/include/c++/13/backward/binders.h:
+
+/usr/include/c++/13/bit:
+
+/usr/include/c++/13/bits/basic_string.tcc:
+
+/usr/include/c++/13/bits/concept_check.h:
+
+/usr/include/c++/13/bits/alloc_traits.h:
+
+/usr/include/c++/13/bits/ranges_cmp.h:
+
+/usr/include/asm-generic/int-ll64.h:
 
 /home/adopten/computer_graphics_swsu/lb9/CImg.h:
-
-/usr/include/c++/13/streambuf:
-
-/usr/include/c++/13/bits/memory_resource.h:
 
 /usr/include/wchar.h:
 
 /usr/include/c++/13/algorithm:
 
-/usr/include/features-time64.h:
+/usr/include/c++/13/bits/basic_ios.h:
+
+/usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/usr/include/c++/13/bits/algorithmfwd.h:
+
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/c++/13/ios:
+
+/usr/include/c++/13/cerrno:
+
+/usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
+
+/usr/include/X11/Xfuncproto.h:
+
+/usr/include/c++/13/bits/stl_iterator_base_types.h:
+
+/usr/include/stdio.h:
+
+/usr/include/alloca.h:
+
+/usr/include/x86_64-linux-gnu/sys/select.h:
+
+/usr/include/c++/13/cwchar:
+
+/usr/include/X11/Xlib.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/c++/13/bits/stl_construct.h:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/c++/13/tr1/special_function_util.h:
+
+/usr/include/stdc-predef.h:
+
+/usr/include/c++/13/bits/stringfwd.h:
+
+/usr/include/c++/13/bits/iterator_concepts.h:
+
+/usr/include/X11/Xosdefs.h:
 
 /usr/include/c++/13/bits/hash_bytes.h:
 
 /usr/include/x86_64-linux-gnu/bits/math-vector.h:
 
-/usr/include/c++/13/bits/functional_hash.h:
+/usr/include/c++/13/bits/cpp_type_traits.h:
 
-/usr/include/errno.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
 
-/usr/include/c++/13/bits/range_access.h:
+/usr/include/c++/13/bits/move.h:
 
-/usr/include/c++/13/tr1/hypergeometric.tcc:
-
-/usr/include/c++/13/type_traits:
-
-/usr/include/c++/13/bits/ios_base.h:
+/usr/include/X11/keysymdef.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
 
@@ -642,43 +627,99 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
+/usr/include/c++/13/bits/cxxabi_forced.h:
+
+/usr/include/c++/13/bits/exception.h:
+
+/usr/include/c++/13/bits/memory_resource.h:
+
+/usr/include/c++/13/streambuf:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/c++/13/bits/cxxabi_init_exception.h:
+
+/usr/include/c++/13/typeinfo:
+
+/usr/include/c++/13/bits/localefwd.h:
+
+/usr/include/c++/13/bits/ptr_traits.h:
+
+/usr/include/linux/posix_types.h:
+
+/usr/include/c++/13/bits/streambuf_iterator.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/c++/13/bits/exception_defines.h:
+
+/usr/include/c++/13/bits/exception_ptr.h:
+
+/usr/include/c++/13/bits/istream.tcc:
+
+/usr/include/c++/13/bits/functional_hash.h:
+
+/usr/include/errno.h:
+
+/usr/include/c++/13/bits/ios_base.h:
+
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/include/X11/Xutil.h:
+
+/usr/include/c++/13/stdexcept:
+
 /usr/include/fnmatch.h:
 
 /usr/include/c++/13/bits/stl_relops.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
-/usr/include/c++/13/bits/allocator.h:
-
 /usr/include/c++/13/bits/uniform_int_dist.h:
 
 /usr/include/c++/13/bits/locale_classes.tcc:
+
+/usr/include/c++/13/bits/ranges_algo.h:
+
+/usr/include/c++/13/bits/invoke.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
-/usr/include/jmorecfg.h:
-
 /usr/include/c++/13/bits/memoryfwd.h:
 
-/usr/include/c++/13/bits/ostream_insert.h:
+/usr/include/c++/13/compare:
 
-/usr/include/c++/13/bits/invoke.h:
+/usr/include/c++/13/system_error:
 
-/usr/include/c++/13/bits/ranges_algo.h:
+/usr/include/c++/13/bits/string_view.tcc:
 
-/usr/include/c++/13/stdexcept:
+/usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
 
-/usr/include/c++/13/bits/stl_construct.h:
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
-/usr/include/pnglibconf.h:
+/usr/include/c++/13/string:
 
-/usr/include/c++/13/bits/ranges_algobase.h:
+/usr/include/features-time64.h:
 
-/usr/include/c++/13/bits/refwrap.h:
+/usr/include/c++/13/tr1/ell_integral.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
+/usr/include/c++/13/tr1/exp_integral.tcc:
+
+/usr/include/c++/13/initializer_list:
+
+/usr/include/c++/13/tr1/bessel_function.tcc:
+
+/usr/include/limits.h:
+
+/usr/include/c++/13/bits/range_access.h:
+
+/usr/include/c++/13/tr1/hypergeometric.tcc:
+
+/usr/include/c++/13/type_traits:
 
 /usr/include/c++/13/tr1/legendre_function.tcc:
 
@@ -704,6 +745,8 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/x86_64-linux-gnu/bits/dirent.h:
 
+/usr/include/c++/13/vector:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/float.h:
 
 /usr/include/ctype.h:
@@ -722,10 +765,6 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
-/usr/include/linux/limits.h:
-
-/usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
-
 /usr/include/c++/13/bits/locale_facets.tcc:
 
 /usr/include/linux/stat.h:
@@ -740,39 +779,21 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
-/usr/include/pngconf.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/time_t.h:
-
 /usr/include/pthread.h:
 
 /usr/include/wctype.h:
 
 /usr/include/sched.h:
 
-/usr/include/setjmp.h:
-
-/usr/include/c++/13/bits/stl_iterator_base_types.h:
-
-/usr/include/stdio.h:
-
 /usr/include/stdlib.h:
 
 /usr/include/string.h:
-
-/usr/include/png.h:
 
 /usr/include/strings.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_rwlock.h:
 
 /usr/include/x86_64-linux-gnu/asm/errno.h:
-
-/usr/include/c++/13/ext/numeric_traits.h:
-
-/usr/include/c++/13/bits/stl_iterator.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/c++/13/cwctype:
 
@@ -832,8 +853,6 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
-/usr/include/jpeglib.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/stat.h:
@@ -874,10 +893,6 @@ CMakeFiles/processor.dir/main.cpp.o: /home/adopten/computer_graphics_swsu/lb9/ma
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
+/usr/include/c++/13/bits/stl_vector.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h:
-
-/usr/include/c++/13/ext/atomicity.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/timer_t.h:

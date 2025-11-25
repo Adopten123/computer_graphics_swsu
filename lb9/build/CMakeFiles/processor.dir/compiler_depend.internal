@@ -4,6 +4,13 @@
 CMakeFiles/processor.dir/main.cpp.o
  /home/adopten/computer_graphics_swsu/lb9/main.cpp
  /home/adopten/computer_graphics_swsu/lb9/CImg.h
+ /usr/include/X11/X.h
+ /usr/include/X11/Xfuncproto.h
+ /usr/include/X11/Xlib.h
+ /usr/include/X11/Xosdefs.h
+ /usr/include/X11/Xutil.h
+ /usr/include/X11/keysym.h
+ /usr/include/X11/keysymdef.h
  /usr/include/alloca.h
  /usr/include/asm-generic/bitsperlong.h
  /usr/include/asm-generic/errno-base.h
@@ -65,6 +72,7 @@ CMakeFiles/processor.dir/main.cpp.o
  /usr/include/c++/13/bits/std_abs.h
  /usr/include/c++/13/bits/stl_algo.h
  /usr/include/c++/13/bits/stl_algobase.h
+ /usr/include/c++/13/bits/stl_bvector.h
  /usr/include/c++/13/bits/stl_construct.h
  /usr/include/c++/13/bits/stl_function.h
  /usr/include/c++/13/bits/stl_heap.h
@@ -74,6 +82,8 @@ CMakeFiles/processor.dir/main.cpp.o
  /usr/include/c++/13/bits/stl_pair.h
  /usr/include/c++/13/bits/stl_relops.h
  /usr/include/c++/13/bits/stl_tempbuf.h
+ /usr/include/c++/13/bits/stl_uninitialized.h
+ /usr/include/c++/13/bits/stl_vector.h
  /usr/include/c++/13/bits/streambuf.tcc
  /usr/include/c++/13/bits/streambuf_iterator.h
  /usr/include/c++/13/bits/string_view.tcc
@@ -82,6 +92,7 @@ CMakeFiles/processor.dir/main.cpp.o
  /usr/include/c++/13/bits/uses_allocator.h
  /usr/include/c++/13/bits/uses_allocator_args.h
  /usr/include/c++/13/bits/utility.h
+ /usr/include/c++/13/bits/vector.tcc
  /usr/include/c++/13/cctype
  /usr/include/c++/13/cerrno
  /usr/include/c++/13/cfloat
@@ -139,6 +150,7 @@ CMakeFiles/processor.dir/main.cpp.o
  /usr/include/c++/13/type_traits
  /usr/include/c++/13/typeinfo
  /usr/include/c++/13/utility
+ /usr/include/c++/13/vector
  /usr/include/ctype.h
  /usr/include/dirent.h
  /usr/include/endian.h
@@ -147,8 +159,6 @@ CMakeFiles/processor.dir/main.cpp.o
  /usr/include/features-time64.h
  /usr/include/features.h
  /usr/include/fnmatch.h
- /usr/include/jmorecfg.h
- /usr/include/jpeglib.h
  /usr/include/limits.h
  /usr/include/linux/close_range.h
  /usr/include/linux/errno.h
@@ -160,12 +170,8 @@ CMakeFiles/processor.dir/main.cpp.o
  /usr/include/linux/types.h
  /usr/include/locale.h
  /usr/include/math.h
- /usr/include/png.h
- /usr/include/pngconf.h
- /usr/include/pnglibconf.h
  /usr/include/pthread.h
  /usr/include/sched.h
- /usr/include/setjmp.h
  /usr/include/stdc-predef.h
  /usr/include/stdio.h
  /usr/include/stdlib.h
@@ -283,7 +289,6 @@ CMakeFiles/processor.dir/main.cpp.o
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h
  /usr/include/x86_64-linux-gnu/gnu/stubs.h
- /usr/include/x86_64-linux-gnu/jconfig.h
  /usr/include/x86_64-linux-gnu/sys/cdefs.h
  /usr/include/x86_64-linux-gnu/sys/select.h
  /usr/include/x86_64-linux-gnu/sys/single_threaded.h

@@ -210,18 +210,8 @@ Image shear_y_image(const Image& src, double ky, Interp interp) {
 }
 
 int main(int argc, char** argv) {
-    if (argc < 6) {
-        std::cerr
-            << "Usage:\n"
-            << "  " << argv[0] << " input_image output_image transform interpolation [params]\n\n"
-            << "  transform:      scale | rotate | shearx | sheary\n"
-            << "  interpolation:  nearest | bilinear | bicubic\n\n"
-            << "Examples:\n"
-            << "  " << argv[0] << " lena.jpg out_scale_bilinear.png scale bilinear 2.0 2.0\n"
-            << "  " << argv[0] << " lena.jpg out_rot_bicubic.png   rotate bicubic 45\n"
-            << "  " << argv[0] << " lena.jpg out_shear_nearest.png shearx nearest 0.5\n";
+    if (argc < 6)
         return 1;
-    }
 
     const std::string in_name   = argv[1];
     const std::string out_name  = argv[2];
@@ -242,24 +232,12 @@ int main(int argc, char** argv) {
         double sy = std::stof(argv[6]);
         dst = scale_image(src, sx, sy, interp);
     } else if (transform == "rotate") {
-        if (argc < 6) {
-            std::cerr << "rotate requires angle_deg\n";
-            return 1;
-        }
         double angle = std::stof(argv[5]);
         dst = rotate_image(src, angle, interp);
     } else if (transform == "shearx") {
-        if (argc < 6) {
-            std::cerr << "shearx requires kx\n";
-            return 1;
-        }
         double kx = std::stof(argv[5]);
         dst = shear_x_image(src, kx, interp);
     } else if (transform == "sheary") {
-        if (argc < 6) {
-            std::cerr << "sheary requires ky\n";
-            return 1;
-        }
         double ky = std::stof(argv[5]);
         dst = shear_y_image(src, ky, interp);
     } else {

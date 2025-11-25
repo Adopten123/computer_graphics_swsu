@@ -1,255 +1,190 @@
-#define cimg_use_jpeg
-#define cimg_use_png
-#define cimg_display 0
-
+#define cimg_display 1
 #include "CImg.h"
 #include <iostream>
+#include <vector>
 #include <cmath>
-#include <string>
 
 using namespace cimg_library;
-using Image = CImg<unsigned char>;
+using namespace std;
 
-enum class Interp {
-    Nearest,
-    Bilinear,
-    Bicubic
-};
+const int LEFT   = 1;
+const int RIGHT  = 2;
+const int BOTTOM = 4;
+const int TOP    = 8;
 
-Interp parse_interp(const std::string& s) {
-    if (s == "nearest")  return Interp::Nearest;
-    if (s == "bilinear") return Interp::Bilinear;
-    if (s == "bicubic")  return Interp::Bicubic;
-    throw std::runtime_error("Unknown interpolation method: " + s);
+const int IMG_W = 800;
+const int IMG_H = 600;
+
+int compute_code(double x, double y,
+                double xmin, double ymin,
+                double xmax, double ymax)
+{
+    int code = 0;
+    if (x < xmin) code |= LEFT;
+    if (x > xmax) code |= RIGHT;
+    if (y < ymin) code |= BOTTOM;
+    if (y > ymax) code |= TOP;
+    return code;
 }
 
-double get_pixel_clamped(const Image& img, int x, int y, int c) {
-    if (x < 0) x = 0;
-    if (y < 0) y = 0;
-    if (x >= img.width())  x = img.width()  - 1;
-    if (y >= img.height()) y = img.height() - 1;
-    return img(x, y, 0, c);
-}
+bool cohen_sutherland_clip(double &x1, double &y1,
+                         double &x2, double &y2,
+                         double xmin, double ymin,
+                         double xmax, double ymax)
+{
+    int code1 = compute_code(x1,y1,xmin,ymin,xmax,ymax);
+    int code2 = compute_code(x2,y2,xmin,ymin,xmax,ymax);
 
-void sample_nearest(const Image& src, double xs, double ys, unsigned char* out) {
-    int xi = (int)std::round(xs);
-    int yi = (int)std::round(ys);
+    while (true)
+    {
+        if ((code1 | code2) == 0)
+            return true;
 
-    for (int c = 0; c < src.spectrum(); ++c)
-        out[c] = (unsigned char)get_pixel_clamped(src, xi, yi, c);
-}
+        if (code1 & code2)
+            return false;
 
-void sample_bilinear(const Image& src, double xs, double ys, unsigned char* out) {
-    int x0 = (int)std::floor(xs);
-    int y0 = (int)std::floor(ys);
-    double a = xs - x0;
-    double b = ys - y0;
+        double x, y;
+        int outCode = code1 ? code1 : code2;
 
-    for (int c = 0; c < src.spectrum(); ++c) {
-        double f00 = get_pixel_clamped(src, x0,     y0,     c);
-        double f10 = get_pixel_clamped(src, x0 + 1, y0,     c);
-        double f01 = get_pixel_clamped(src, x0,     y0 + 1, c);
-        double f11 = get_pixel_clamped(src, x0 + 1, y0 + 1, c);
-
-        double val =
-            (1 - a) * (1 - b) * f00 +
-            a       * (1 - b) * f10 +
-            (1 - a) * b       * f01 +
-            a       * b       * f11;
-
-        if (val < 0) val = 0;
-        if (val > 255) val = 255;
-        out[c] = (unsigned char)std::round(val);
-    }
-}
-
-double cubic_weight(double t) {
-    t = std::fabs(t);
-    const double a = -0.5;
-    if (t <= 1.0)
-        return (a + 2.0)*t*t*t - (a + 3.0)*t*t + 1.0;
-    else if (t < 2.0)
-        return a*t*t*t - 5.0*a*t*t + 8.0*a*t - 4.0*a;
-    else
-        return 0.0;
-}
-
-void sample_bicubic(const Image& src, double xs, double ys, unsigned char* out) {
-    int x_int = (int)std::floor(xs);
-    int y_int = (int)std::floor(ys);
-
-    for (int c = 0; c < src.spectrum(); ++c) {
-        double sum = 0.0;
-        double wsum = 0.0;
-
-        for (int m = -1; m <= 2; ++m) {
-            double wx = cubic_weight(xs - (x_int + m));
-            for (int n = -1; n <= 2; ++n) {
-                double wy = cubic_weight(ys - (y_int + n));
-                double w = wx * wy;
-                double f = get_pixel_clamped(src, x_int + m, y_int + n, c);
-                sum  += f * w;
-                wsum += w;
-            }
+        if (outCode & TOP) {
+            x = x1 + (x2-x1)*(ymax-y1)/(y2-y1);
+            y = ymax;
+        } else if (outCode & BOTTOM) {
+            x = x1 + (x2-x1)*(ymin-y1)/(y2-y1);
+            y = ymin;
+        } else if (outCode & RIGHT) {
+            y = y1 + (y2-y1)*(xmax-x1)/(x2-x1);
+            x = xmax;
+        } else {
+            y = y1 + (y2-y1)*(xmin-x1)/(x2-x1);
+            x = xmin;
         }
 
-        double val = (wsum != 0.0) ? (sum / wsum) : 0.0;
-        if (val < 0) val = 0;
-        if (val > 255) val = 255;
-        out[c] = (unsigned char)std::round(val);
-    }
-}
-
-void sample(const Image& src, double xs, double ys, Interp interp, unsigned char* out) {
-    switch (interp) {
-        case Interp::Nearest:  sample_nearest(src, xs, ys, out);  break;
-        case Interp::Bilinear: sample_bilinear(src, xs, ys, out); break;
-        case Interp::Bicubic:  sample_bicubic(src, xs, ys, out);  break;
-    }
-}
-
-struct Affine {
-    double a11, a12;
-    double a21, a22;
-    double tx, ty;
-};
-
-Image warp_affine(const Image& src, int dst_w, int dst_h, const Affine& Ainv, Interp interp) {
-    Image dst(dst_w, dst_h, 1, src.spectrum(), 0);
-
-    unsigned char* buf = new unsigned char[src.spectrum()];
-
-    cimg_forXY(dst, x, y) {
-        double xs = Ainv.a11 * x + Ainv.a12 * y + Ainv.tx;
-        double ys = Ainv.a21 * x + Ainv.a22 * y + Ainv.ty;
-        sample(src, xs, ys, interp, buf);
-        for (int c = 0; c < src.spectrum(); ++c)
-            dst(x, y, 0, c) = buf[c];
-    }
-
-    delete[] buf;
-    return dst;
-}
-
-
-Image scale_image(const Image& src, double sx, double sy, Interp interp) {
-    int dst_w = (int)std::round(src.width()  * sx);
-    int dst_h = (int)std::round(src.height() * sy);
-
-    double cx_src = (src.width()  - 1) / 2.0;
-    double cy_src = (src.height() - 1) / 2.0;
-    double cx_dst = (dst_w        - 1) / 2.0;
-    double cy_dst = (dst_h        - 1) / 2.0;
-
-    Affine Ainv;
-    Ainv.a11 = 1.0 / sx; 
-    Ainv.a12 = 0.0;
-    Ainv.a21 = 0.0;      
-    Ainv.a22 = 1.0 / sy;
-
-    Ainv.tx = cx_src - Ainv.a11 * cx_dst - Ainv.a12 * cy_dst;
-    Ainv.ty = cy_src - Ainv.a21 * cx_dst - Ainv.a22 * cy_dst;
-
-    return warp_affine(src, dst_w, dst_h, Ainv, interp);
-}
-
-Image rotate_image(const Image& src, double angle_deg, Interp interp) {
-    double angle_rad = angle_deg * (double)M_PI / 180.0;
-    double cosA = std::cos(angle_rad);
-    double sinA = std::sin(angle_rad);
-
-    int w = src.width();
-    int h = src.height();
-
-    int dst_w = w;
-    int dst_h = h;
-
-    double cx = (w - 1) / 2.0;
-    double cy = (h - 1) / 2.0;
-
-    Affine Ainv;
-    Ainv.a11 =  cosA; Ainv.a12 = sinA;
-    Ainv.a21 = -sinA; Ainv.a22 = cosA;
-
-    Ainv.tx = cx - Ainv.a11 * cx - Ainv.a12 * cy;
-    Ainv.ty = cy - Ainv.a21 * cx - Ainv.a22 * cy;
-
-    return warp_affine(src, dst_w, dst_h, Ainv, interp);
-}
-
-Image shear_x_image(const Image& src, double kx, Interp interp) {
-    int w = src.width();
-    int h = src.height();
-
-    int dst_w = w;
-    int dst_h = h;
-
-    Affine Ainv;
-    Ainv.a11 = 1.0;  Ainv.a12 = -kx;
-    Ainv.a21 = 0.0;  Ainv.a22 =  1.0;
-    Ainv.tx  = 0.0;  Ainv.ty  =  0.0;
-
-    return warp_affine(src, dst_w, dst_h, Ainv, interp);
-}
-
-Image shear_y_image(const Image& src, double ky, Interp interp) {
-    int w = src.width();
-    int h = src.height();
-
-    int dst_w = w;
-    int dst_h = h;
-
-    Affine Ainv;
-    Ainv.a11 = 1.0;  
-    Ainv.a12 =  0.0;
-    Ainv.a21 = -ky;   
-    Ainv.a22 =  1.0;
-    Ainv.tx  = 0.0;  
-    Ainv.ty  =  0.0;
-
-    return warp_affine(src, dst_w, dst_h, Ainv, interp);
-}
-
-
-int main(int argc, char** argv) {
-    if (argc < 6)
-        return 1;
-
-    const std::string in_name   = argv[1];
-    const std::string out_name  = argv[2];
-    const std::string transform = argv[3];
-    const std::string interp_s  = argv[4];
-
-    Interp interp = parse_interp(interp_s);
-    Image src(in_name.c_str());
-
-    Image dst;
-
-    if (transform == "scale") {
-        if (argc < 7) {
-            std::cerr << "scale requires sx sy\n";
-            return 1;
+        if (outCode == code1) {
+            x1 = x; y1 = y;
+            code1 = compute_code(x1,y1,xmin,ymin,xmax,ymax);
+        } else {
+            x2 = x; y2 = y;
+            code2 = compute_code(x2,y2,xmin,ymin,xmax,ymax);
         }
-        double sx = std::stof(argv[5]);
-        double sy = std::stof(argv[6]);
-        dst = scale_image(src, sx, sy, interp);
-    } else if (transform == "rotate") {
-        double angle = std::stof(argv[5]);
-        dst = rotate_image(src, angle, interp);
-    } else if (transform == "shearx") {
-        double kx = std::stof(argv[5]);
-        dst = shear_x_image(src, kx, interp);
-    } else if (transform == "sheary") {
-        double ky = std::stof(argv[5]);
-        dst = shear_y_image(src, ky, interp);
-    } else {
-        std::cerr << "Unknown transform: " << transform << "\n";
-        return 1;
+    }
+}
+
+bool midpoint_clip_rec(double x1, double y1,
+                     double x2, double y2,
+                     double xmin, double ymin,
+                     double xmax, double ymax,
+                     double eps,
+                     double &cx1, double &cy1,
+                     double &cx2, double &cy2)
+{
+    int c1 = compute_code(x1,y1,xmin,ymin,xmax,ymax);
+    int c2 = compute_code(x2,y2,xmin,ymin,xmax,ymax);
+
+    if ((c1 | c2) == 0) {
+        cx1 = x1; cy1 = y1;
+        cx2 = x2; cy2 = y2;
+        return true;
     }
 
-    dst.save(out_name.c_str());
-    std::cout << "Saved: " << out_name << "\n";
+    if (c1 & c2) return false;
 
+    if (hypot(x2-x1, y2-y1) < eps) {
+        double xm = (x1+x2)/2.0;
+        double ym = (y1+y2)/2.0;
+        if (compute_code(xm,ym,xmin,ymin,xmax,ymax) == 0) {
+            cx1 = cx2 = xm;
+            cy1 = cy2 = ym;
+            return true;
+        }
+        return false;
+    }
+
+    double xm = (x1+x2)/2.0;
+    double ym = (y1+y2)/2.0;
+
+    double ax1,ay1,ax2,ay2;
+    double bx1,by1,bx2,by2;
+
+    bool a = midpoint_clip_rec(x1,y1,xm,ym,xmin,ymin,xmax,ymax,
+                             eps,ax1,ay1,ax2,ay2);
+    bool b = midpoint_clip_rec(xm,ym,x2,y2,xmin,ymin,xmax,ymax,
+                             eps,bx1,by1,bx2,by2);
+
+    if (!a && !b) return false;
+
+    if (a && !b) {
+        cx1=ax1; cy1=ay1;
+        cx2=ax2; cy2=ay2;
+        return true;
+    }
+
+    if (!a && b) {
+        cx1=bx1; cy1=by1;
+        cx2=bx2; cy2=by2;
+        return true;
+    }
+
+    cx1=ax1; cy1=ay1;
+    cx2=bx2; cy2=by2;
+    return true;
+}
+
+bool midpointClip(double &x1, double &y1, double &x2, double &y2,
+                  double xmin, double ymin, double xmax, double ymax) {
+    double cx1,cy1,cx2,cy2;
+    bool ok = midpoint_clip_rec(x1,y1,x2,y2,
+                              xmin,ymin,xmax,ymax,
+                              0.5, cx1,cy1,cx2,cy2);
+    if (ok) {
+        x1=cx1; y1=cy1;
+        x2=cx2; y2=cy2;
+    }
+    return ok;
+}
+
+struct Segment { double x1,y1,x2,y2; };
+
+int main()
+{
+    cout << "Input data:\n"
+            "xmin ymin xmax ymax n  x1 y1 x2 y2 ... method\n";
+
+    double xmin,ymin,xmax,ymax;
+    int n, method;
+
+    cin >> xmin >> ymin >> xmax >> ymax >> n;
+
+    vector<Segment> segs(n);
+    for (int i=0;i<n;i++)
+        cin >> segs[i].x1 >> segs[i].y1 >> segs[i].x2 >> segs[i].y2;
+
+    cin >> method;
+
+    CImg<unsigned char> img(IMG_W,IMG_H,1,3,255);
+
+    const unsigned char color_window[3]  = {255,0,0};
+    const unsigned char color_src[3]     = {150,150,150};
+    const unsigned char color_clipped[3] = {0,180,0};
+
+    img.draw_rectangle((int)xmin,(int)ymin,(int)xmax,(int)ymax,
+                       color_window,1.0f,~0U);
+
+    for (auto &s: segs)
+    {
+        img.draw_line((int)s.x1,(int)s.y1,(int)s.x2,(int)s.y2,color_src);
+
+        double x1=s.x1, y1=s.y1, x2=s.x2, y2=s.y2;
+        bool vis = (method==1)
+                ? cohen_sutherland_clip(x1,y1,x2,y2,xmin,ymin,xmax,ymax)
+                : midpointClip(x1,y1,x2,y2,xmin,ymin,xmax,ymax);
+
+        if (vis)
+            img.draw_line((int)x1,(int)y1,(int)x2,(int)y2,color_clipped);
+    }
+
+    CImgDisplay disp(img, "Processor");
+    while (!disp.is_closed()) disp.wait();
 
     return 0;
 }
