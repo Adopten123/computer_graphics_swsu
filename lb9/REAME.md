@@ -1,11 +1,5 @@
-./processor ../inputed_image.jpg out_scale_nearest.png  scale nearest  2.0 2.0
-./processor ../inputed_image.jpg out_scale_bilinear.png scale bilinear 2.0 2.0
-./processor ../inputed_image.jpg out_scale_bicubic.png  scale bicubic  2.0 2.0
-
-./processor ../inputed_image.jpg out_rot_nearest.png  rotate nearest  45
-./processor ../inputed_image.jpg out_rot_bilinear.png rotate bilinear 45
-./processor ../inputed_image.jpg out_rot_bicubic.png  rotate bicubic  45
-
-./processor ../inputed_image.jpg out_shearx_nearest.png  shearx nearest 0.5
-./processor ../inputed_image.jpg out_shearx_bicubic.png  shearx bicubic 0.5
-./processor ../inputed_image.jpg out_sheary_bilinear.png sheary bilinear 0.3
+100 100 400 300 1   50 150 450 150   1
+150 150 500 450 2   200 200 450 300   0 0 100 50   2
+100 100 600 400 3   0 0 700 500   50 300 750 300   300 0 300 600   1
+50 50 750 550 3   0 0 800 600   100 600 700 0   400 0 400 600   2
+200 100 600 500 5   100 200 700 200   100 300 700 300   100 400 700 400   100 150 700 250   100 350 700 450   2

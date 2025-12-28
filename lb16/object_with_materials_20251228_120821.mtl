@@ -1,0 +1,31 @@
+# MTL файл для 3D объекта
+# Создано программой 3D Viewer
+
+newmtl Red_Plastic
+Ka 0 0 0
+Kd 0.8 0.2 0.2
+Ks 0.8 0.8 0.8
+Ns 32
+d 1
+
+newmtl Green_Metal
+Ka 0.2 0.2 0.2
+Kd 0.2 0.8 0.2
+Ks 0.7 0.7 0.7
+Ns 128
+d 1
+
+newmtl Blue_Glass
+Ka 0 0 0
+Kd 0.2 0.2 0.8
+Ks 0.9 0.9 0.9
+Ns 256
+d 0.7
+
+newmtl Yellow_Rubber
+Ka 0.1 0.1 0.1
+Kd 0.8 0.8 0.2
+Ks 0.1 0.1 0.1
+Ns 10
+d 1
+

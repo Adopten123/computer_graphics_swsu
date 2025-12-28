@@ -6,3 +6,4 @@ g++ -o lab15 main.cpp -lGL -lGLU -lglut -lm
 
 ./lab15
 
+Нажать S, чтобы файл сохранился

@@ -1,0 +1,30 @@
+# Экспорт 3D объекта с материалами
+# Имя: Cube
+# Количество вершин: 8
+# Количество граней: 6
+mtllib object_with_materials_20251228_120821.mtl
+
+v -1 -1 1
+v 1 -1 1
+v 1 1 1
+v -1 1 1
+v -1 -1 -1
+v 1 -1 -1
+v 1 1 -1
+v -1 1 -1
+
+# Грани с материалами
+usemtl Red_Plastic
+f 1 2 3 4
+usemtl Green_Metal
+f 2 6 7 3
+usemtl Blue_Glass
+f 6 5 8 7
+usemtl Yellow_Rubber
+f 5 1 4 8
+usemtl Red_Plastic
+f 4 3 7 8
+usemtl Green_Metal
+f 5 6 2 1
+
+# Конец файла
